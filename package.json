@@ -15,5 +15,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/nassim98/webhook"
+  },
+  "devDependencies": {
+    "axios": "^0.21.1"
   }
 }
