@@ -31,15 +31,15 @@ app.post('/aircall/calls', (req, res) => {
  *  business opening hours, false otherwise.
  */
 const isOutsideOfBusinessHours = () => {
-    //TODO: change timezone
+    //set to UTC timezone
     const businessHours = [
-        {from: 10, to: 17}, // Sunday, from 10am to 5pm
-        {from: 8,  to: 18}, // Monday, from 8am to 6pm
-        {from: 8,  to: 18}, // Tuesday, from 8am to 6pm
-        {from: 8,  to: 9}, // Wednesday, from 8am to 6pm
-        {from: 8,  to: 18}, // Thursday, from 8am to 6pm
-        {from: 8,  to: 18}, // Friday, from 8am to 6pm
-        {from: 10, to: 17}  // Saturday, from 10am to 5pm
+        {from: -1, to: -1}, // Sunday
+        {from: 6, to: 18}, // Monday, from 7am to 7pm UTC+1
+        {from: 6, to: 18}, // Tuesday, from 7am to 7pm UTC+1
+        {from: 6, to: 18}, // Wednesday, from 7am to 7pm UTC+1
+        {from: 6, to: 18}, // Thursday, from 7am to 7pm UTC+1
+        {from: 6, to: 18}, // Friday, from 7am to 7pm UTC+1
+        {from: 6, to: 18}  // Saturday, from 7am to 7pm UTC+1
     ];
 
     // Get current day of the week (0 for Sunday, 1 for Monday...):
