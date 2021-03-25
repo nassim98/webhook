@@ -37,7 +37,7 @@ const isOutsideOfBusinessHours = () => {
         {from: 6, to: 18}, // Monday, from 7am to 7pm UTC+1
         {from: 6, to: 18}, // Tuesday, from 7am to 7pm UTC+1
         {from: 6, to: 18}, // Wednesday, from 7am to 7pm UTC+1
-        {from: 6, to: 10}, // Thursday, from 7am to 7pm UTC+1
+        {from: 6, to: 18}, // Thursday, from 7am to 7pm UTC+1
         {from: 6, to: 18}, // Friday, from 7am to 7pm UTC+1
         {from: 6, to: 18}  // Saturday, from 7am to 7pm UTC+1
     ];
