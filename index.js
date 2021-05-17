@@ -34,7 +34,7 @@ const isOutsideOfBusinessHours = () => {
     //set to UTC timezone
     const businessHours = [
         {from: -1, to: -1}, // Sunday
-        {from: 7, to: 15}, // Monday, from 7am to 7pm UTC+2
+        {from: 7, to: 14}, // Monday, from 7am to 7pm UTC+2
         {from: 7, to: 19}, // Tuesday, from 7am to 7pm UTC+2
         {from: 7, to: 19}, // Wednesday, from 7am to 7pm UTC+2
         {from: 7, to: 19}, // Thursday, from 7am to 7pm UTC+2
