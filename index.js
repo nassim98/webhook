@@ -62,7 +62,6 @@ const isInsideOfHolidays = () => {
     // Add here your holidays
     const holidays = [
         {day: 24, month: 5}, // 24-05 holiday
-        {day: 17, month: 5}, // test holiday
         {day: 14, month: 7}, // 14-07 holiday
         {day: 15, month: 8}, // 15-08 holiday
         {day: 1, month: 11}, // 1-11 holiday
