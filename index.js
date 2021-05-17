@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 5000;
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-    res.json((new Date()).getHours());
+    res.json({'message': 'Server is running'});
 });
 
 /**
@@ -34,7 +34,7 @@ const isOutsideOfBusinessHours = () => {
     //set to UTC timezone
     const businessHours = [
         {from: -1, to: -1}, // Sunday
-        {from: 7, to: 14}, // Monday, from 7am to 7pm UTC+2
+        {from: 7, to: 19}, // Monday, from 7am to 7pm UTC+2
         {from: 7, to: 19}, // Tuesday, from 7am to 7pm UTC+2
         {from: 7, to: 19}, // Wednesday, from 7am to 7pm UTC+2
         {from: 7, to: 19}, // Thursday, from 7am to 7pm UTC+2
@@ -64,7 +64,7 @@ const isInsideOfHolidays = () => {
         {day: 24, month: 5}, // 24-05 holiday
         {day: 14, month: 7}, // 14-07 holiday
         {day: 15, month: 8}, // 15-08 holiday
-        {day: 1, month: 11}, // 1-11 holiday
+        {day: 1, month: 11}, // 01-11 holiday
         {day: 11, month: 11}, // 11-11 holiday
         {day: 25, month: 12} // 25-12 holiday
     ];
