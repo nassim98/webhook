@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 app.post('/aircall/calls', (req, res) => {
     if (req.body.event === 'call.created'&&
         req.body.data.direction === 'inbound') {
-        if (isOutsideOfBusinessHours()) {
+        if (isOutsideOfBusinessHours() || isInsideOfHolidays()) {
             transferCall(req.body.data);
         }
         else {
@@ -34,12 +34,12 @@ const isOutsideOfBusinessHours = () => {
     //set to UTC timezone
     const businessHours = [
         {from: -1, to: -1}, // Sunday
-        {from: 5, to: 8}, // Monday, from 7am to 7pm UTC+2
-        {from: 5, to: 17}, // Tuesday, from 7am to 7pm UTC+2
-        {from: 5, to: 17}, // Wednesday, from 7am to 7pm UTC+2
-        {from: 5, to: 17}, // Thursday, from 7am to 7pm UTC+2
-        {from: 5, to: 17}, // Friday, from 7am to 7pm UTC+2
-        {from: 5, to: 17}  // Saturday, from 7am to 7pm UTC+2
+        {from: 7, to: 19}, // Monday, from 7am to 7pm UTC+2
+        {from: 7, to: 19}, // Tuesday, from 7am to 7pm UTC+2
+        {from: 7, to: 19}, // Wednesday, from 7am to 7pm UTC+2
+        {from: 7, to: 19}, // Thursday, from 7am to 7pm UTC+2
+        {from: 7, to: 19}, // Friday, from 7am to 7pm UTC+2
+        {from: 7, to: 19}  // Saturday, from 7am to 7pm UTC+2
     ];
 
     // Get current day of the week (0 for Sunday, 1 for Monday...):
@@ -52,6 +52,30 @@ const isOutsideOfBusinessHours = () => {
         businessHours[currentDay]['from'] <= currentHour &&
         currentHour < businessHours[currentDay]['to']
     );
+}
+
+/**
+ *  Returns true if current date is a holiday,
+ *  false otherwise.
+ */
+const isInsideOfHolidays = () => {
+    // Add here your holidays
+    const holidays = [
+        {day: 24, month: 5}, // 24-05 holiday
+        {day: 14, month: 7}, // 14-07 holiday
+        {day: 15, month: 8}, // 15-08 holiday
+        {day: 1, month: 11}, // 1-11 holiday
+        {day: 11, month: 11}, // 11-11 holiday
+        {day: 25, month: 12} // 25-12 holiday
+    ];
+
+    // Get the day-of-the-month, using local time, between 1 and 31.
+    const currentDate = (new Date()).getDate();
+
+    // Get the month, using local time, between 1 and 12 (January to December).
+    const currentMonth = (new Date()).getMonth() + 1;
+
+    return (holidays.some( holiday => (holiday.day === currentDate && holiday.month === currentMonth) ));
 }
 
 /**
